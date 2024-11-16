@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"embed"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -92,6 +93,7 @@ func main() {
 		Addr:    ":" + port,
 		Handler: router,
 	}
+	fmt.Printf("hello world")
 
 	log.Printf("Serving on port: %s\n", port)
 	log.Fatal(srv.ListenAndServe())

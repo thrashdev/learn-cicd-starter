@@ -33,5 +33,9 @@ jobs:
       - name: 'Publish to Registry'
         run: 'gcloud builds submit --tag europe-central2-docker.pkg.dev/theta-album-441909-i6/notely-ar-repo/notely:latest .'
 
+      - name: Run Migrations
+        run: './scripts/migrateup.sh'
+        env: ${{ secrets.DATABASE_URL }}
+
       - name: 'Deploy to Production'
         run: 'gcloud run deploy notely --image europe-central2-docker.pkg.dev/theta-album-441909-i6/notely-ar-repo/notely:latest --region us-central1 --allow-unauthenticated --project theta-album-441909-i6 --max-instances=4'
